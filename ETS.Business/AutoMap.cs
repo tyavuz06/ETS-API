@@ -18,6 +18,7 @@ namespace ETS.Business
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<PersonelDTO, Personel>().ReverseMap();
+                cfg.CreateMap<ETS.Common.Models.User, User>().ReverseMap();   
             });
             
             var mapper = new AutoMapper.Mapper(config);

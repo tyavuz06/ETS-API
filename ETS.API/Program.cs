@@ -1,3 +1,4 @@
+using ETS.API;
 using ETS.Business;
 using ETS.Business.Core;
 using ETS.Business.Interfaces;
@@ -30,7 +31,9 @@ builder.Services.AddSwaggerGen();
 builder.Host.ConfigureServices(services =>
 {
     services.AddSingleton<IPersonelBusiness, PersonelBusiness>();
+    services.AddSingleton<IUserService, UserBusiness>();
     services.AddSingleton<IPersonelDal, PersonelDal>();
+    services.AddSingleton<IUserDal, UserDal>();
     services.AddSingleton<IMapper, AutoMap>();
 });
 
@@ -45,14 +48,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
+var x = app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors(MyAllowSpecificOrigins);
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 app.Run();
 
